@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>청소년 스트레스 데이터 대시보드</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --primary: #4e73df;
+            --secondary: #1cc88a;
+            --danger: #e74a3b;
+        }
+
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .summary-box {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .stat-item .value {
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-item .label {
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .highlight-red { color: var(--danger); }
+        .highlight-blue { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<div class="dashboard-container">
+    <div class="header">
+        <h1>📊 청소년 스트레스 인지율 인터랙티브 리포트</h1>
+        <p>2021년 대비 2024년 데이터 변화 및 성별·지역별 분석</p>
+    </div>
+
+    <div class="card" style="margin-bottom: 20px;">
+        <div class="summary-box">
+            <div class="stat-item">
+                <span class="label">전체 스트레스 인지율</span>
+                <span class="value highlight-blue">42.3%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">여학생 인지율</span>
+                <span class="value highlight-red">49.9%</span>
+            </div>
+            <div class="stat-item">
+                <span class="label">최고 수치 지역(전북)</span>
+                <span class="value">46.1%</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <h2>📈 연도별 스트레스 인지율 추이</h2>
+            <canvas id="trendChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>👫 성별 스트레스 인지율 (2024)</h2>
+            <canvas id="genderChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>🏫 학교급별 상세 (중/고)</h2>
+            <canvas id="schoolChart"></canvas>
+        </div>
+
+        <div class="card">
+            <h2>📍 지역별 스트레스 인지율 상위 5</h2>
+            <canvas id="regionChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 1. 연도별 추이 차트 (Line Chart)
+    const trendCtx = document.getElementById('trendChart').getContext('2d');
+    new Chart(trendCtx, {
+        type: 'line',
+        data: {
+            labels: ['2021년', '2022년', '2023년', '2024년'],
+            datasets: [{
+                label: '스트레스 인지율 (%)',
+                data: [38.8, 40.5, 41.2, 42.3], // 예시 포함 추세 데이터
+                borderColor: '#4e73df',
+                backgroundColor: 'rgba(78, 115, 223, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        }
+    });
+
+    // 2. 성별 비교 차트 (Bar
