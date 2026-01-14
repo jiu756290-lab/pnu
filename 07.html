@@ -1,0 +1,181 @@
+import React from 'react';
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  PieChart, Pie, Cell, Legend 
+} from 'recharts';
+import { 
+  TrendingUp, Users, Globe, ShoppingBag, Music, ShieldCheck, 
+  ArrowUpRight, MessageCircle 
+} from 'lucide-react';
+
+const App = () => {
+  // 데이터: 키워드 언급 빈도 (가상)
+  const keywordData = [
+    { name: '문화/국가', value: 85 },
+    { name: '작품성', value: 70 },
+    { name: '자본/소니', value: 65 },
+    { name: '박대기 기자', value: 45 },
+    { name: '전통 요소', value: 80 },
+  ];
+
+  // 데이터: 대중 여론 비중 (가상)
+  const sentimentData = [
+    { name: '긍정/자부심', value: 60 },
+    { name: '중립/비평', value: 25 },
+    { name: '신중/우려', value: 15 },
+  ];
+
+  const COLORS = ['#8884d8', '#82ca9d', '#ffc658', '#ff8042', '#0088FE'];
+
+  return (
+    <div className="min-h-screen bg-slate-50 p-4 md:p-8 font-sans">
+      <div className="max-w-6xl mx-auto">
+        {/* 헤더 섹션 */}
+        <header className="bg-indigo-900 text-white p-8 rounded-3xl shadow-xl mb-8 flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
+          <div className="z-10 text-center md:text-left">
+            <h1 className="text-4xl font-black mb-2">K-POP DEMON HUNTERS</h1>
+            <p className="text-indigo-200 text-lg">글로벌 신드롬 및 대중 담론 분석 인포그래픽</p>
+          </div>
+          <div className="mt-4 md:mt-0 flex gap-4 z-10">
+            <div className="bg-white/10 px-4 py-2 rounded-xl backdrop-blur-sm border border-white/20">
+              <p className="text-xs text-indigo-300">글로벌 흥행</p>
+              <p className="text-xl font-bold italic font-serif">40개국 1위</p>
+            </div>
+          </div>
+          {/* 장식용 배경 원 */}
+          <div className="absolute -right-20 -top-20 w-64 h-64 bg-indigo-500 rounded-full opacity-20 blur-3xl"></div>
+        </header>
+
+        {/* 메인 통계 그리드 */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-blue-100 rounded-lg text-blue-600">
+                <Music size={24} />
+              </div>
+              <h3 className="font-bold text-slate-700">차트 퍼포먼스</h3>
+            </div>
+            <p className="text-sm text-slate-500 mb-1">빌보드 글로벌 200</p>
+            <p className="text-3xl font-black text-blue-600 mb-2">1위 <span className="text-sm font-normal text-slate-400">('Golden')</span></p>
+            <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div className="bg-blue-600 h-full w-[100%]"></div>
+            </div>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-purple-100 rounded-lg text-purple-600">
+                <ShoppingBag size={24} />
+              </div>
+              <h3 className="font-bold text-slate-700">굿즈 열풍</h3>
+            </div>
+            <p className="text-sm text-slate-500 mb-1">박물관 굿즈 완판</p>
+            <p className="text-3xl font-black text-purple-600 mb-2">4차 <span className="text-sm font-normal text-slate-400">연속 완판</span></p>
+            <p className="text-xs text-slate-400">일평균 50만 명 접속</p>
+          </div>
+
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="p-3 bg-emerald-100 rounded-lg text-emerald-600">
+                <MessageCircle size={24} />
+              </div>
+              <h3 className="font-bold text-slate-700">바이럴 지수</h3>
+            </div>
+            <p className="text-sm text-slate-500 mb-1">박대기 기자 언급</p>
+            <p className="text-3xl font-black text-emerald-600 mb-2">13회+ <span className="text-sm font-normal text-slate-400">(상위 노출)</span></p>
+            <p className="text-xs text-slate-400">팬덤의 유희적 참여 확대</p>
+          </div>
+        </div>
+
+        {/* 차트 섹션 */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <TrendingUp className="text-indigo-600" /> 담론 핵심 키워드 빈도
+            </h3>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={keywordData} layout="vertical">
+                  <CartesianGrid strokeDasharray="3 3" horizontal={false} />
+                  <XAxis type="number" hide />
+                  <YAxis dataKey="name" type="category" width={80} tick={{fontSize: 12}} />
+                  <Tooltip />
+                  <Bar dataKey="value" fill="#6366f1" radius={[0, 4, 4, 0]} barSize={20} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className="bg-white p-8 rounded-3xl shadow-sm border border-slate-200">
+            <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
+              <Users className="text-indigo-600" /> 대중 감성 분석 비중
+            </h3>
+            <div className="h-64 flex flex-col md:flex-row items-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={sentimentData}
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                  >
+                    {sentimentData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip />
+                  <Legend verticalAlign="bottom" height={36}/>
+                </PieChart>
+              </ResponsiveContainer>
+              <div className="md:w-1/2 mt-4 md:mt-0 text-sm space-y-2">
+                <div className="p-3 bg-slate-50 rounded-xl border-l-4 border-indigo-400">
+                  <p className="font-bold">신중론: 자부심 경계</p>
+                  <p className="text-xs text-slate-500">"지나친 국뽕은 경계해야 한다"</p>
+                </div>
+                <div className="p-3 bg-slate-50 rounded-xl border-l-4 border-emerald-400">
+                  <p className="font-bold">긍정론: 소프트파워 인정</p>
+                  <p className="text-xs text-slate-500">"문화 브랜드 가치는 곧 국익이다"</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 하단 요약 그리드 */}
+        <div className="bg-indigo-50 p-8 rounded-3xl border border-indigo-100">
+          <h3 className="text-2xl font-black text-indigo-900 mb-6 text-center">3대 핵심 성공 전략</h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
+              <div className="mx-auto w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 mb-4">
+                <ShieldCheck size={28} />
+              </div>
+              <h4 className="font-bold mb-2">전통의 현대적 재해석</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">갓, 포, 사인검 등 전통 원형을 힙한 디자인으로 승화</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
+              <div className="mx-auto w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center text-pink-600 mb-4">
+                <Music size={28} />
+              </div>
+              <h4 className="font-bold mb-2">실제 K-POP 시스템 접목</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">현실 아티스트와 오버랩되는 과몰입 유발 세계관</p>
+            </div>
+            <div className="bg-white p-6 rounded-2xl shadow-sm text-center">
+              <div className="mx-auto w-12 h-12 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mb-4">
+                <Globe size={28} />
+              </div>
+              <h4 className="font-bold mb-2">글로벌 연합 시스템</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">소니 자본 + 한국적 정서 = 폭발적 시너지 발생</p>
+            </div>
+          </div>
+        </div>
+
+        <footer className="mt-8 text-center text-slate-400 text-sm">
+          <p>© 2025 K-Pop Demon Hunters 분석 리포트 인포그래픽 제작</p>
+        </footer>
+      </div>
+    </div>
+  );
+};
+
+export default App;
