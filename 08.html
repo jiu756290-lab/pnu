@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 시대의 신뢰와 윤리 - 통합 보고서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;800&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+        }
+
+        .nav-glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900">
+
+    <!-- Navigation Bar (Home Button) -->
+    <nav class="fixed top-0 w-full z-50 nav-glass border-b border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 text-indigo-600 font-extrabold text-xl">
+                <i class="fas fa-home"></i>
+                <span>AI 윤리 리포트</span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-semibold text-slate-600">
+                <a href="#overview" class="hover:text-indigo-600 transition">개요</a>
+                <a href="#analysis" class="hover:text-indigo-600 transition">데이터 분석</a>
+                <a href="#pdf-section" class="hover:text-indigo-600 transition">보고서 아카이브</a>
+                <a href="#solution" class="hover:text-indigo-600 transition">제언</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="gradient-bg text-white pt-32 pb-20 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6 leading-tight">
+                생성형 AI 시대의<br>사회적 신뢰와 정보 윤리
+            </h1>
+            <p class="text-xl md:text-2xl opacity-90 mb-10 leading-relaxed">
+                3개의 보고서를 통해 분석한 우리 사회의 디지털 현주소
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#pdf-section" class="bg-white text-indigo-600 px-8 py-3 rounded-full font-bold hover:bg-slate-100 transition shadow-lg">보고서 읽기</a>
+                <a href="#analysis" class="bg-indigo-500 bg-opacity-30 border border-indigo-300 text-white px-8 py-3 rounded-full font-bold hover:bg-opacity-40 transition">데이터 보기</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Overview Section -->
+    <section id="overview" class="py-20 px-6 max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold mb-4">핵심 문제 정의</h2>
+            <div class="w-20 h-1 bg-indigo-600 mx-auto"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-hover transition-all">
+                <div class="bg-red-100 text-red-600 w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-user-shield"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">개인정보 주권</h3>
+                <p class="text-slate-600 leading-relaxed">무분별한 데이터 학습과 재목적화로 인해 우리의 일상이 AI의 학습 도구로 전락할 위험이 있습니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-hover transition-all">
+                <div class="bg-indigo-100 text-indigo-600 w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">창작 윤리와 저작권</h3>
+                <p class="text-slate-600 leading-relaxed">기존 창작물을 '짜깁기'하는 AI의 학습 방식은 예술적 가치를 하락시키고 창작 의욕을 꺾습니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 card-hover transition-all">
+                <div class="bg-amber-100 text-amber-600 w-12 h-12 rounded-lg flex items-center justify-center text-2xl mb-6">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3 class="text-xl font-bold mb-3">정보 평가 역량</h3>
+                <p class="text-slate-600 leading-relaxed">세대 간 정보 판별 능력 격차는 가짜뉴스와 알고리즘 편향성이 우리 사회를 오염시키는 통로가 됩니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PDF Contents Section (New) -->
+    <section id="pdf-section" class="py-20 bg-slate-100 px-6 border-y border-slate-200">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">분석 보고서 아카이브</h2>
+                <p class="text-slate-600">업로드된 3개의 PDF 보고서 핵심 내용을 웹으로 구현했습니다.</p>
+            </div>
+
+            <div class="space-y-8">
+                <!-- Report 1 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row border border-slate-200">
+                    <div class="md:w-1/3 bg-indigo-600 p-8 flex flex-col justify-center text-white">
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-80 mb-2">Report 01</span>
+                        <h3 class="text-2xl font-bold leading-tight mb-4">생성형 AI 대중 인식 분석</h3>
+                        <p class="text-sm opacity-90">지브리풍 AI 프로필 사례를 중심으로 본 대중의 복합적 인식 분석</p>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i> 주요 분석 결과
+                        </h4>
+                        <ul class="space-y-3 text-slate-600 text-sm leading-relaxed">
+                            <li>• <b>이중적 태도:</b> 신기함과 재미(지브리 감성)를 즐기면서도 데이터 착취에 대한 강한 경계심 보유</li>
+                            <li>• <b>창작 가치 하락:</b> AI의 학습이 인간의 사유를 거치지 않은 '무단 복제'라는 인식이 지배적임</li>
+                            <li>• <b>미래 불안:</b> 인간 창작자의 입지가 좁아지고 기술이 인간의 사고를 저하시킬 것에 대한 우려</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Report 2 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row border border-slate-200">
+                    <div class="md:w-1/3 bg-red-500 p-8 flex flex-col justify-center text-white">
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-80 mb-2">Report 02</span>
+                        <h3 class="text-2xl font-bold leading-tight mb-4">AI 챗봇 개인정보 판결 분석</h3>
+                        <p class="text-sm opacity-90">국내 첫 AI 학습 데이터 사법 판단 사례와 여론 동향 분석</p>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i> 주요 법적 쟁점
+                        </h4>
+                        <ul class="space-y-3 text-slate-600 text-sm leading-relaxed">
+                            <li>• <b>여론 악화:</b> 전체 여론의 90%가 개인정보 유출 및 기업의 책임 회피에 대해 '분노' 표출</li>
+                            <li>• <b>데이터 재목적화:</b> 서비스 수집 데이터를 이용자 동의 없이 AI 학습용으로 전용하는 문제</li>
+                            <li>• <b>통제권 상실:</b> 한 번 학습된 모델 내 개인정보의 삭제 및 수정이 기술적으로 불가능함</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Report 3 -->
+                <div class="bg-white rounded-2xl shadow-sm overflow-hidden flex flex-col md:flex-row border border-slate-200">
+                    <div class="md:w-1/3 bg-amber-500 p-8 flex flex-col justify-center text-white">
+                        <span class="text-xs font-bold uppercase tracking-widest opacity-80 mb-2">Report 03</span>
+                        <h3 class="text-2xl font-bold leading-tight mb-4">정보 평가 능력과 가짜뉴스</h3>
+                        <p class="text-sm opacity-90">디지털 리터러시 격차가 가짜뉴스 확산에 미치는 구조적 영향 분석</p>
+                    </div>
+                    <div class="md:w-2/3 p-8">
+                        <h4 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <i class="fas fa-check-circle text-green-500"></i> 구조적 매커니즘
+                        </h4>
+                        <ul class="space-y-3 text-slate-600 text-sm leading-relaxed">
+                            <li>• <b>세대 격차:</b> 2030(76점) 대비 60대 이상(44점)의 정보 평가 능력이 낮아 가짜뉴스에 취약</li>
+                            <li>• <b>죽은 인터넷 이론:</b> AI 생성 저품질 정보가 인터넷을 덮어 정보 생태계가 파괴되는 현상</li>
+                            <li>• <b>정서적 소비:</b> 사실 여부보다 적대감 배출과 보복 심리에 기반한 정보 소비 경향</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="analysis" class="py-20 bg-white px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12">데이터 시각화</h2>
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="p-10 rounded-3xl bg-indigo-50 border border-indigo-100">
+                    <div class="text-indigo-600 text-6xl font-black mb-4">90<span class="text-3xl">%</span></div>
+                    <p class="text-lg font-bold text-slate-800">AI 여론의 부정적 감성</p>
+                    <p class="text-slate-500 mt-2">사법 시스템 및 기업 윤리 불신</p>
+                </div>
+                <div class="p-10 rounded-3xl bg-slate-50 border border-slate-200">
+                    <div class="text-slate-800 text-6xl font-black mb-4">44<span class="text-3xl">점</span></div>
+                    <p class="text-lg font-bold text-slate-800">노년층 정보 평가 역량</p>
+                    <p class="text-slate-500 mt-2">세대 간 디지털 리터러시 격차 심화</p>
+                </div>
+            </div>
+            
+            <div class="bg-slate-900 rounded-3xl p-8 md:p-12 text-white text-left">
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-3 text-indigo-400">
+                    <i class="fas fa-brain"></i> "적대적 정보 소비의 시대"
+                </h3>
+                <p class="text-slate-400 leading-relaxed mb-6">
+                    분석 결과에 따르면, 현재 사람들은 정보의 '진실성'보다는 '자신의 감정(분노, 보복)'을 해소해 줄 수 있는 정보를 더 많이 공유하고 있습니다. 이는 가짜뉴스가 확산되는 가장 위험한 토대가 됩니다.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="bg-slate-800 px-3 py-1 rounded-md text-xs border border-slate-700">#알고리즘_중독</span>
+                    <span class="bg-slate-800 px-3 py-1 rounded-md text-xs border border-slate-700">#디지털_격차</span>
+                    <span class="bg-slate-800 px-3 py-1 rounded-md text-xs border border-slate-700">#데이터_주권</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section id="solution" class="py-24 bg-indigo-900 text-white px-6">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">미래를 위한 제언</h2>
+                <p class="text-indigo-200">우리가 더 나은 디지털 세상을 만들기 위해 필요한 것들</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="space-y-4">
+                    <div class="text-indigo-400 text-4xl font-black">01</div>
+                    <h4 class="text-xl font-bold">기술적 투명성</h4>
+                    <p class="text-indigo-200 text-sm leading-relaxed">AI 생성물에 대한 워터마크 표시를 의무화하고, 기업은 데이터 학습 과정을 투명하게 공개하여 사용자의 신뢰를 얻어야 합니다.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-indigo-400 text-4xl font-black">02</div>
+                    <h4 class="text-xl font-bold">법적 기반 마련</h4>
+                    <p class="text-indigo-200 text-sm leading-relaxed">창작자의 권리 보호를 위한 학습 보상 체계와 개인정보를 안전하게 보호할 수 있는 강력한 법률 가이드라인이 필요합니다.</p>
+                </div>
+                <div class="space-y-4">
+                    <div class="text-indigo-400 text-4xl font-black">03</div>
+                    <h4 class="text-xl font-bold">리터러시 교육</h4>
+                    <p class="text-indigo-200 text-sm leading-relaxed">전 세대를 대상으로 정보의 진실성을 검증하고 알고리즘의 작동 방식을 이해하는 비판적 사고 교육을 강화해야 합니다.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-white text-center border-t border-slate-200">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-indigo-600 font-extrabold text-lg flex items-center gap-2">
+                <i class="fas fa-home"></i> AI 윤리 리포트
+            </div>
+            <p class="text-slate-500 text-sm italic font-medium">"AI의 미래는 기술이 아니라 인간의 신뢰에 달려 있습니다."</p>
+            <p class="text-slate-400 text-xs tracking-tight uppercase">© 2026 Integrated AI Ethics Report Project.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
