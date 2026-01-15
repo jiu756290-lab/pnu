@@ -5,15 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PM 사고 분석 인포그래픽</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
         .gradient-bg { background: linear-gradient(135deg, #6366f1 0%, #a855f7 100%); }
         .stat-card { transition: transform 0.3s ease; }
         .stat-card:hover { transform: translateY(-5px); }
+        
+        /* 홈 버튼용 커스텀 스타일 */
+        .home-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body class="pt-20 pb-12 px-4 md:px-8">
+
+    <!-- 상단 고정 내비게이션 (홈 버튼) -->
+    <nav class="fixed top-0 left-0 w-full z-50 px-4 py-3 home-nav">
+        <div class="max-w-4xl mx-auto flex justify-between items-center">
+            <a href="https://jiu756290-lab.github.io/pnu/" class="flex items-center group transition-all">
+                <div class="w-10 h-10 gradient-bg rounded-xl flex items-center justify-center text-white shadow-lg shadow-indigo-200 mr-3 group-hover:scale-110 transition-transform">
+                    <i class="fa-solid fa-house"></i>
+                </div>
+                <span class="font-bold text-gray-800 tracking-tight">메인으로 돌아가기</span>
+            </a>
+            <div class="hidden md:block">
+                <span class="text-xs font-bold text-indigo-500 bg-indigo-50 px-3 py-1 rounded-full uppercase tracking-wider">Project Analysis</span>
+            </div>
+        </div>
+    </nav>
+
     <div class="max-w-4xl mx-auto bg-white rounded-3xl shadow-2xl overflow-hidden">
         <!-- Header -->
         <div class="gradient-bg p-8 text-white text-center">
@@ -146,5 +170,12 @@
             <p class="text-gray-400 text-xs uppercase tracking-widest">Data Source: KoROAD TASS (2017-2021) | Powered by Pandas Analysis</p>
         </div>
     </div>
+
+    <!-- 우측 하단 플로팅 홈 버튼 (모바일 접근성 강화) -->
+    <a href="https://jiu756290-lab.github.io/pnu/" 
+       class="fixed bottom-6 right-6 w-14 h-14 gradient-bg text-white rounded-full flex items-center justify-center shadow-2xl hover:scale-110 active:scale-95 transition-all z-50 md:hidden">
+        <i class="fa-solid fa-house text-xl"></i>
+    </a>
+
 </body>
 </html>
