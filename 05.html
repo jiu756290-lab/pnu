@@ -1,21 +1,33 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>입시 경쟁률 분석 대시보드</title>
+   <title>입시 경쟁률 분석 대시보드</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
         .chart-container { position: relative; height: 400px; width: 100%; }
         .card { transition: transform 0.2s; }
         .card:hover { transform: translateY(-5px); }
+        .nav-home-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-home-btn:hover { background-color: #f1f5f9; transform: scale(1.02); }
     </style>
 </head>
 <body class="p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
+        
+        <!-- 홈 내비게이션 버튼 -->
+        <div class="flex justify-start mb-6">
+            <a href="https://jiu756290-lab.github.io/pnu/" class="nav-home-btn flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-200 text-slate-700 font-bold group">
+                <i class="fa-solid fa-house text-emerald-600 group-hover:rotate-12 transition-transform"></i>
+                <span>메인 페이지로</span>
+            </a>
+        </div>
+
         <!-- 헤더 -->
         <header class="mb-10 text-center">
             <h1 class="text-3xl font-bold text-slate-800 mb-2">🎓 대학교 학과별 경쟁률 대시보드</h1>
