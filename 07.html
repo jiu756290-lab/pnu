@@ -6,14 +6,26 @@
     <title>K-Pop Demon Hunters 인포그래픽</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700;900&display=swap');
         body { font-family: 'Noto Sans KR', sans-serif; }
         .chart-container { position: relative; height: 300px; width: 100%; }
+        .nav-home-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-home-btn:hover { background-color: #f1f5f9; transform: translateY(-2px); }
     </style>
 </head>
 <body class="bg-slate-50 p-4 md:p-8">
     <div class="max-w-6xl mx-auto">
+
+        <!-- 홈 내비게이션 버튼 -->
+        <div class="flex justify-start mb-6">
+            <a href="https://jiu756290-lab.github.io/pnu/" class="nav-home-btn flex items-center gap-2 px-5 py-2.5 bg-white rounded-2xl shadow-sm border border-slate-200 text-indigo-900 font-bold group">
+                <i class="fa-solid fa-house text-indigo-600 group-hover:scale-110 transition-transform"></i>
+                <span>메인 페이지로 돌아가기</span>
+            </a>
+        </div>
+
         <!-- 헤더 섹션 -->
         <header class="bg-indigo-900 text-white p-8 rounded-3xl shadow-xl mb-8 flex flex-col md:flex-row justify-between items-center relative overflow-hidden">
             <div class="z-10 text-center md:text-left">
@@ -59,7 +71,7 @@
                     <h3 class="font-bold text-slate-700">바이럴 지수</h3>
                 </div>
                 <p class="text-sm text-slate-500 mb-1">박대기 기자 언급</p>
-                <p class="text-3xl font-black text-emerald-600 mb-2">13회+ <span className="text-sm font-normal text-slate-400">(상위 노출)</span></p>
+                <p class="text-3xl font-black text-emerald-600 mb-2">13회+ <span class="text-sm font-normal text-slate-400">(상위 노출)</span></p>
                 <p class="text-xs text-slate-400">팬덤의 유희적 참여 확대</p>
             </div>
         </div>
