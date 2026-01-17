@@ -3,155 +3,200 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>입시 경쟁률 분석 대시보드</title>
+    <title>2024 대학 교육비 리포트</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Alpine.js (상태 관리용) -->
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap');
-        body { font-family: 'Noto Sans KR', sans-serif; background-color: #f8fafc; }
-        .chart-container { position: relative; height: 400px; width: 100%; }
-        .card { transition: transform 0.2s; }
-        .card:hover { transform: translateY(-5px); }
-        .nav-home-btn { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-home-btn:hover { background-color: #f1f5f9; transform: scale(1.02); }
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        
+        [x-cloak] { display: none !important; }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .progress-bar-fill {
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     </style>
 </head>
-<body class="p-4 md:p-8">
-    <div class="max-w-6xl mx-auto">
-        
-        <!-- 홈 내비게이션 버튼 -->
-        <div class="flex justify-start mb-6">
-            <a href="https://jiu756290-lab.github.io/pnu/" class="nav-home-btn flex items-center gap-2 px-4 py-2 bg-white rounded-xl shadow-sm border border-slate-200 text-slate-700 font-bold group">
-                <i class="fa-solid fa-house text-emerald-600 group-hover:rotate-12 transition-transform"></i>
-                <span>메인 페이지로</span>
-            </a>
-        </div>
+<body class="bg-gray-50 p-4 md:p-8" x-data="{ activeTab: 'home' }">
 
-        <!-- 헤더 -->
-        <header class="mb-10 text-center">
-            <h1 class="text-3xl font-bold text-slate-800 mb-2">🎓 대학교 학과별 경쟁률 대시보드</h1>
-            <p class="text-slate-500">간호학과 입시 데이터 시각화 분석</p>
-        </header>
+    <div class="max-w-4xl mx-auto">
+        <!-- Navigation Bar -->
+        <nav class="flex items-center justify-between mb-8 bg-white p-2 rounded-2xl shadow-sm border border-gray-100">
+            <button 
+                @click="activeTab = 'home'"
+                :class="activeTab === 'home' ? 'bg-blue-100 text-blue-600 font-bold' : 'text-gray-500 hover:bg-gray-100'"
+                class="flex items-center gap-2 px-4 py-2 rounded-xl transition-all"
+            >
+                <i data-lucide="home" class="w-5 h-5"></i> <span>Home</span>
+            </button>
+            
+            <div class="flex gap-1">
+                <button 
+                    @click="activeTab = 'ranking'"
+                    :class="activeTab === 'ranking' ? 'bg-blue-600 text-white' : 'text-gray-500 hover:bg-gray-100'"
+                    class="px-4 py-2 rounded-xl transition-all text-sm font-medium"
+                >
+                    순위
+                </button>
+                <button 
+                    @click="activeTab = 'analysis'"
+                    :class="activeTab === 'analysis' ? 'bg-blue-600 text-white' : 'text-gray-500 hover:bg-gray-100'"
+                    class="px-4 py-2 rounded-xl transition-all text-sm font-medium"
+                >
+                    분석
+                </button>
+            </div>
+        </nav>
 
-        <!-- 요약 카드 -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-            <div class="card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                <p class="text-sm text-slate-500 mb-1">총 분석 대학</p>
-                <p class="text-3xl font-bold text-blue-600">4개교</p>
-            </div>
-            <div class="card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                <p class="text-sm text-slate-500 mb-1">최고 경쟁률 (간호)</p>
-                <p class="text-3xl font-bold text-emerald-600">14.8 : 1</p>
-            </div>
-            <div class="card bg-white p-6 rounded-2xl shadow-sm border border-slate-100 text-center">
-                <p class="text-sm text-slate-500 mb-1">분석 지역</p>
-                <p class="text-xl font-bold text-slate-700">부산 및 경남권</p>
-            </div>
-        </div>
+        <!-- Main Content Area -->
+        <main>
+            <!-- Home Tab -->
+            <div x-show="activeTab === 'home'" x-cloak class="space-y-6 fade-in">
+                <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-2xl p-8 text-white shadow-lg">
+                    <h2 class="text-3xl font-bold mb-2">2024 대학 교육비 리포트</h2>
+                    <p class="opacity-90">전국 주요 대학의 학생 1인당 교육비 투자 현황을 한눈에 확인하세요.</p>
+                    <button 
+                        @click="activeTab = 'ranking'"
+                        class="mt-6 bg-white text-blue-600 px-6 py-2 rounded-full font-semibold flex items-center gap-2 hover:bg-opacity-90 transition-all"
+                    >
+                        상위 대학 순위 보기 <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
 
-        <!-- 컨트롤러 및 차트 -->
-        <div class="bg-white p-6 rounded-2xl shadow-md border border-slate-100">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-6 gap-4">
-                <h2 id="chartTitle" class="text-xl font-bold text-slate-800">📊 간호학과 경쟁률 현황</h2>
-                <div class="flex bg-slate-100 p-1 rounded-lg">
-                    <span class="px-4 py-2 rounded-md bg-white shadow-sm text-emerald-600 font-bold">간호학과 분석 전용</span>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow text-center md:text-left">
+                        <div class="text-blue-600 mb-3 flex justify-center md:justify-start"><i data-lucide="trending-up" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-gray-800">특별법 법인</h3>
+                        <p class="text-sm text-gray-500 mt-1">과학기술원 중심 압도적 투자</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow text-center md:text-left">
+                        <div class="text-blue-600 mb-3 flex justify-center md:justify-start"><i data-lucide="bar-chart-3" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-gray-800">국립대(거점)</h3>
+                        <p class="text-sm text-gray-500 mt-1">평균 2,000~2,700만 원 선</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow text-center md:text-left">
+                        <div class="text-blue-600 mb-3 flex justify-center md:justify-start"><i data-lucide="graduation-cap" class="w-5 h-5"></i></div>
+                        <h3 class="font-bold text-gray-800">사립대</h3>
+                        <p class="text-sm text-gray-500 mt-1">학교별 편차 매우 큼 (최대 2.8배)</p>
+                    </div>
                 </div>
             </div>
-            
-            <div class="chart-container">
-                <canvas id="competitionChart"></canvas>
-            </div>
-        </div>
 
-        <!-- 데이터 인사이트 -->
-        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
-                <h3 class="text-lg font-bold text-blue-800 mb-3">🔍 분석 인사이트</h3>
-                <ul class="space-y-2 text-blue-900 text-sm">
-                    <li>• 부산 및 경남권 주요 보건계열 특성화 대학들의 경쟁률을 비교하였습니다.</li>
-                    <li>• 동아대, 인제대 등 대형 부속 병원을 보유한 대학들이 안정적인 지원세를 보입니다.</li>
-                    <li>• 부산가톨릭대와 고신대 또한 간호 교육 역량이 집중되어 높은 선호도를 유지하고 있습니다.</li>
-                </ul>
+            <!-- Ranking Tab -->
+            <div x-show="activeTab === 'ranking'" x-cloak class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 fade-in">
+                <h3 class="text-xl font-bold mb-6 flex items-center gap-2">
+                    <i data-lucide="trending-up" class="text-blue-600"></i> 학생 1인당 교육비 TOP 5
+                </h3>
+                <div class="space-y-5">
+                    <!-- Item 1 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <span class="font-medium text-gray-700">1. 한국에너지공과대 <span class="text-xs text-gray-400">(전남)</span></span>
+                            <span class="font-bold text-blue-600">184.3백만 원</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                            <div class="bg-blue-600 h-full rounded-full progress-bar-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <!-- Item 2 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <span class="font-medium text-gray-700">2. 대구경북과학기술원 <span class="text-xs text-gray-400">(대구)</span></span>
+                            <span class="font-bold text-blue-600">98.4백만 원</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                            <div class="bg-blue-500 h-full rounded-full progress-bar-fill" style="width: 53.3%"></div>
+                        </div>
+                    </div>
+                    <!-- Item 3 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <span class="font-medium text-gray-700">3. 한국과학기술원 <span class="text-xs text-gray-400">(대전)</span></span>
+                            <span class="font-bold text-blue-600">95.0백만 원</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                            <div class="bg-blue-400 h-full rounded-full progress-bar-fill" style="width: 51.5%"></div>
+                        </div>
+                    </div>
+                    <!-- Item 4 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <span class="font-medium text-gray-700">4. 광주과학기술원 <span class="text-xs text-gray-400">(광주)</span></span>
+                            <span class="font-bold text-blue-600">88.5백만 원</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                            <div class="bg-blue-300 h-full rounded-full progress-bar-fill" style="width: 48%"></div>
+                        </div>
+                    </div>
+                    <!-- Item 5 -->
+                    <div class="space-y-2">
+                        <div class="flex justify-between items-end">
+                            <span class="font-medium text-gray-700">5. 울산과학기술원 <span class="text-xs text-gray-400">(울산)</span></span>
+                            <span class="font-bold text-blue-600">76.4백만 원</span>
+                        </div>
+                        <div class="w-full bg-gray-100 h-4 rounded-full overflow-hidden">
+                            <div class="bg-blue-200 h-full rounded-full progress-bar-fill" style="width: 41.4%"></div>
+                        </div>
+                    </div>
+                </div>
+                <p class="mt-8 text-xs text-gray-400 text-center">* 한국에너지공과대학교가 약 1.8억 원으로 전국 1위 기록</p>
             </div>
-            <div class="bg-slate-800 p-6 rounded-2xl text-white">
-                <h3 class="text-lg font-bold mb-3">🛠 기술 요약</h3>
-                <p class="text-slate-400 text-sm leading-relaxed">
-                    이 페이지는 <span class="text-white">Chart.js</span>를 사용하여 실시간 렌더링을 구현하였으며, <span class="text-white">Tailwind CSS</span>로 반응형 레이아웃을 구성했습니다. 데이터는 요청하신 4개 대학의 명칭을 반영하여 재구성되었습니다.
-                </p>
-            </div>
-        </div>
 
-        <footer class="mt-12 pb-8 text-center text-slate-400 text-sm">
-            &copy; 2026 입시 데이터 분석 리포트 시스템
+            <!-- Analysis Tab -->
+            <div x-show="activeTab === 'analysis'" x-cloak class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+                <div class="bg-blue-50 p-6 rounded-2xl border border-blue-100">
+                    <h3 class="font-bold text-blue-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="map-pin" class="w-5 h-5"></i> 설립 구분별 핵심 요약
+                    </h3>
+                    <ul class="space-y-3 text-sm text-blue-900">
+                        <li class="flex gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></div>
+                            <span><strong>특수법인:</strong> 연구 중심 대학의 압도적 투자 규모</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></div>
+                            <span><strong>국립대:</strong> 서울대(6,302만)가 일반 국립대 대비 2배 이상</span>
+                        </li>
+                        <li class="flex gap-2">
+                            <div class="w-1.5 h-1.5 bg-blue-400 rounded-full mt-1.5"></div>
+                            <span><strong>교육대:</strong> 1,400~2,200만 원 사이의 안정적 분포</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="bg-amber-50 p-6 rounded-2xl border border-amber-100">
+                    <h3 class="font-bold text-amber-800 mb-4 flex items-center gap-2">
+                        <i data-lucide="graduation-cap" class="w-5 h-5"></i> 분석 시사점
+                    </h3>
+                    <p class="text-sm text-amber-900 leading-relaxed">
+                        과학기술 인재 양성을 위한 국가적 투자가 특정 대학에 집중되어 있으며, 원격 교육 위주의 방송통신대는 가장 낮은 교육비를 기록했습니다. 
+                        학령인구 감소 시대에 대학별 재정 효율화가 중요한 과제로 부각됩니다.
+                    </p>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-400 text-xs">
+            © 2024 University Education Expense Analysis Report
         </footer>
     </div>
 
     <script>
-        const ctx = document.getElementById('competitionChart').getContext('2d');
-        let currentChart;
-
-        // 요청하신 대학교 이름으로 데이터 구성
-        const data = {
-            nursing: {
-                labels: ['동아대', '부산가톨릭대', '인제대', '고신대'],
-                values: [14.8, 12.5, 13.2, 11.7],
-                color: 'rgba(16, 185, 129, 0.7)',
-                borderColor: 'rgb(16, 185, 129)',
-                title: '📊 간호학과 경쟁률 현황'
-            }
-        };
-
-        function initChart() {
-            const chartData = data.nursing;
-            currentChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: chartData.labels,
-                    datasets: [{
-                        label: '경쟁률 (n:1)',
-                        data: chartData.values,
-                        backgroundColor: chartData.color,
-                        borderColor: chartData.borderColor,
-                        borderWidth: 2,
-                        borderRadius: 8,
-                        hoverBackgroundColor: chartData.borderColor,
-                        barThickness: 60
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            callbacks: {
-                                label: function(context) {
-                                    return ` 경쟁률: ${context.parsed.y} : 1`;
-                                }
-                            }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: '#e2e8f0' },
-                            ticks: { 
-                                font: { family: 'Noto Sans KR' },
-                                callback: function(value) { return value + ':1'; }
-                            }
-                        },
-                        x: {
-                            grid: { display: false },
-                            ticks: { font: { family: 'Noto Sans KR', weight: 'bold' } }
-                        }
-                    }
-                }
-            });
-        }
-
-        // 초기 실행
-        window.onload = () => initChart();
+        // Lucide 아이콘 초기화
+        lucide.createIcons();
     </script>
 </body>
 </html>
